@@ -1,7 +1,7 @@
 from json import dumps
 
-from keapcache import KeapCache
-from keaprestclient import KeapRestClient, KeapDataError
+from .keapcache import KeapCache
+from .keaprestclient import KeapRestClient, KeapDataError
 
 
 class KeapClient(KeapRestClient, KeapCache):

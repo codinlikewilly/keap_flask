@@ -8,7 +8,7 @@ from os import environ
 from os.path import join
 from xmlrpc.client import ServerProxy, Error
 from dateutil import parser
-from keapcache import KeapCache
+from .keapcache import KeapCache
 from authlib.integrations.requests_client import OAuth2Session
 from flask import Blueprint, request, redirect, url_for
 
@@ -125,14 +125,16 @@ class KeapSession(OAuth2Session, KeapCache):
 
     def set_tags(self):
         tags = {}
-        tag_names = environ.get('KEAP_TAGS').split(',')
-        for tag_name in tag_names:
-            tag_id = self.get_tag_id(tag_name)
-            if tag_id is not None:
-                tags[tag_name] = tag_id
-            else:
-                continue
-        self.update_cache('tags', tags)
+        tag_list = environ.get('KEAP_TAGS')
+        if tag_list is not None:
+            tag_names = tag_list.split(',')
+            for tag_name in tag_names:
+                tag_id = self.get_tag_id(tag_name)
+                if tag_id is not None:
+                    tags[tag_name] = tag_id
+                else:
+                    continue
+            self.update_cache('tags', tags)
 
     def get_tag_id(self, tag_name):
         params = {"name": tag_name}

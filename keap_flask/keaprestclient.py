@@ -1,4 +1,4 @@
-from keapsession import KeapSession
+from .keapsession import KeapSession
 
 
 class KeapRestClient(KeapSession):
