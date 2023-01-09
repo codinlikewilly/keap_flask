@@ -10,7 +10,7 @@ setup(
     author='will sexton',
     author_email='will@theapiguys.com',
     url='https://github.com/codinlikewilly/keap_flask',
-    readme = "README.md",
+    readme="README.md",
     license='BSD 2-clause',
     packages=['keap_flask'],
     install_requires=['Flask',
