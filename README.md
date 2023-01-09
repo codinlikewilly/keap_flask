@@ -7,7 +7,7 @@ Quick Setup:
     * Flask app must have three config variables set:
         - 1: KEAP_CLIENT_ID: The Client ID setup on keys.infusionsoft.com
         - 2: KEAP_CLIENT_SECRET: The Client Secret obtained when you setup your client on keys.infusionsoft.com
-        - 3: AUTH_APP_BASE_URL: The Base URL of your application. Make sure to include trailing slash. 
+        - 3: AUTH_APP_BASE_URL: The Base URL of your application. Make sure to include trailing slash.
     
     * Notes:
         - https must be used. I use --cert=adhoc option when testing 
@@ -18,3 +18,12 @@ Quick Setup:
         * Your Auth class must contain the following methods:
             - get_authorization: returns auth
             - update_authorization: updates stored auth
+
+    * Authorizing
+        - A blueprint is added to the flask app. It adds the following:
+            - Authorization Route: '/authorize-keap'
+                * ex: yoursite.com/authorize-keap
+                * this is where you will authorize your application
+        - A CLI command for refreshing auth should the autorefresh fail.: 
+        - Command: 'flask keap refresh-auth'
+        
